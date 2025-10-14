@@ -1,4 +1,14 @@
-import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
+import { Logs } from 'src/logs/entities/log.entity';
+import Roles from 'src/roles/entities/role.entity';
+import {
+  Column,
+  PrimaryGeneratedColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
@@ -10,9 +20,11 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  createdAt: Date;
+  @OneToMany((type) => Logs, (logs) => logs.user)
+  @JoinColumn({ name: 'logs_id' })
+  logs: Logs[];
 
-  @Column()
-  updatedAt: Date;
+  @ManyToMany((type) => Roles, (roles) => roles.user)
+  @JoinTable({ name: 'user_roles' })
+  roles: Roles;
 }

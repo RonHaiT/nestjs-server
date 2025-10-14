@@ -7,7 +7,7 @@ import * as Joi from 'joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { UserModule } from './user/user.module';
-import { RoleModule } from './role/role.module';
+import { RoleModule } from './roles/role.module';
 import { LogsModule } from './logs/logs.module';
 import { connectionParams } from './typeorm-cli.datasource';
 

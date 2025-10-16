@@ -34,15 +34,7 @@ export class UserController {
   @Get()
   findAll() {
     this.logger.log('create user');
-    let user = {
-      isAdmin: false,
-    };
-    if (!user.isAdmin) {
-      throw new HttpException(
-        'You are not authorized to access this resource',
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
+
     return this.userService.findAll();
   }
 

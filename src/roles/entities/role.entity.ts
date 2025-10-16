@@ -16,6 +16,5 @@ export default class Roles {
   name: string;
 
   @ManyToMany(() => User, (user) => user.roles)
-  @JoinTable()
   user: User;
 }

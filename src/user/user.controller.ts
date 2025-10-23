@@ -11,11 +11,14 @@ import {
   HttpStatus,
   Inject,
   LoggerService,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { GetUserDto } from './dto/get-user.dto';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+
 @Controller('user')
 export class UserController {
   constructor(
@@ -32,18 +35,10 @@ export class UserController {
   }
 
   @Get()
-  findAll() {
-    this.logger.log('create user');
-    let user = {
-      isAdmin: false,
-    };
-    if (!user.isAdmin) {
-      throw new HttpException(
-        'You are not authorized to access this resource',
-        HttpStatus.UNAUTHORIZED,
-      );
-    }
-    return this.userService.findAll();
+  findAll(@Query() getUserDto: GetUserDto) {
+    this.logger.log('查询用户列表', { query: getUserDto });
+
+    return this.userService.findAll(getUserDto);
   }
 
   @Get(':id')

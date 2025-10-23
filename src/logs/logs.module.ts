@@ -39,6 +39,7 @@ function createDailyRotateFileTransport(level: string, filename: string) {
         const logOn = configService.get(LogEnum.LOG_ON);
 
         const shouldLogToFile = logOn === true || logOn === 'true';
+        console.log('shouldLogToFile', shouldLogToFile);
 
         return {
           transports: [

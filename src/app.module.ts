@@ -10,6 +10,7 @@ import { UserModule } from './user/user.module';
 import { RoleModule } from './roles/role.module';
 import { LogsModule } from './logs/logs.module';
 import { connectionParams } from './typeorm-cli.datasource';
+import { AuthModule } from './auth/auth.module';
 
 const envFilePath = `.env.${process.env.NODE_ENV}`;
 @Global()
@@ -42,6 +43,7 @@ const envFilePath = `.env.${process.env.NODE_ENV}`;
     UserModule,
     RoleModule,
     LogsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService, Logger],
